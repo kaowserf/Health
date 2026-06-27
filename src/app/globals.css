@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — Health & Wealth Legacy */
+  --color-navy: #0f2a47; /* Legacy Navy — headers, footer, trust anchor */
+  --color-navy-700: #16395f;
+  --color-navy-900: #0a1d33;
+  --color-green: #5ebc2c; /* PRIMARY — brand green (CTAs, accents, badges) */
+  --color-green-600: #50a525; /* hover for green fills */
+  --color-green-700: #3f8a1e; /* darker — green text on white, strong accents */
+  --color-green-100: #eaf6e1; /* light tint — section/selection backgrounds */
+  --color-charcoal: #1a2230; /* Body copy */
+  --color-slate: #6b7280; /* Secondary text, captions */
+  --color-cloud: #f7f9fb; /* Alternating section backgrounds */
+  --color-error: #c0392b; /* Validation errors */
+
+  /* Typography */
+  --font-heading: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Layout — enables max-w-content (Tailwind v4 reads --container-*) */
+  --container-content: 1200px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: var(--color-charcoal);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--color-navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Smooth in-page anchor scrolling, offset for sticky header */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+div[id="register"] {
+  scroll-margin-top: 88px;
+}
+
+/* ----------------------------------------------------------- Animations */
+
+/* Scroll reveal — hidden state only applies once JS marks the page ready,
+   so content is always visible without JS or with reduced motion. */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal-ready .reveal.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* On-load entrance (hero) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+/* Soft fade-in (used by the thank-you reveal) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none;
+  }
+  .reveal-ready .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
