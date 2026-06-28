@@ -10,6 +10,13 @@ export const BRAND = {
   // Reservation line per the seminar brief (PRD §10 open item).
   phoneDisplay: "816-518-1405",
   phoneHref: "tel:+18165181405",
+  // Company office (distinct from the seminar venue in LOCATION).
+  office: {
+    line1: "7280 NW 87th Terrace, Suite 216",
+    line2: "Kansas City, MO 64135",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=7280+NW+87th+Terrace+Suite+216+Kansas+City+MO+64135",
+  },
 } as const;
 
 // Final, public URL — update once the live domain is known (PRD §10, used for
@@ -20,7 +27,15 @@ export const HERO = {
   headline: "Complimentary Estate Planning Seminar: Wills & Living Trusts",
   subheadline:
     "Health & Wealth Legacy cordially invites you to attend this free educational seminar and learn how proper estate planning can help protect your family, assets, and legacy.",
-  badges: ["FREE Educational Seminar", "Sept 10 & 12, 2026", "Gladstone, MO"],
+  badges: [
+    { label: "FREE Educational Seminar", href: "#topics", external: false },
+    { label: "Sept 10 & 12, 2026", href: "#register", external: false },
+    {
+      label: "Gladstone, MO",
+      href: "https://www.google.com/maps/search/?api=1&query=Gladstone+Community+Center+6901+N+Holmes+Street+Gladstone+MO+64118",
+      external: true,
+    },
+  ],
   cta: "Reserve Your Free Seat",
 } as const;
 

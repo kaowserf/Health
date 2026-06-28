@@ -56,12 +56,15 @@ export default function Home() {
           <div className="relative z-10 mx-auto w-full max-w-content px-4 py-20 sm:px-6 sm:py-28">
             <div className="animate-fade-up flex flex-wrap gap-2.5">
               {HERO.badges.map((badge) => (
-                <span
-                  key={badge}
-                  className="rounded-full border border-white/50 bg-white/15 px-3.5 py-1.5 text-sm font-semibold text-white backdrop-blur-sm"
+                <a
+                  key={badge.label}
+                  href={badge.href}
+                  target={badge.external ? "_blank" : undefined}
+                  rel={badge.external ? "noopener noreferrer" : undefined}
+                  className="rounded-full border border-white/50 bg-white/15 px-3.5 py-1.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white hover:bg-white/25"
                 >
-                  {badge}
-                </span>
+                  {badge.label}
+                </a>
               ))}
             </div>
             <h1
@@ -500,6 +503,22 @@ export default function Home() {
                 </a>
               </li>
             </ul>
+
+            <h3 className="mt-6 text-base font-semibold !text-white">
+              Visit Our Office
+            </h3>
+            <a
+              href={BRAND.office.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block text-sm not-italic text-white/80 transition hover:text-green"
+            >
+              <address className="not-italic">
+                {BRAND.office.line1}
+                <br />
+                {BRAND.office.line2}
+              </address>
+            </a>
           </div>
 
           <div className="md:justify-self-end">
