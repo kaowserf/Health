@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import MobileReserveBar from "@/components/MobileReserveBar";
 import CtaButton from "@/components/CtaButton";
 import PhoneLink from "@/components/PhoneLink";
-import LiteYouTube from "@/components/LiteYouTube";
 import ShowcaseVideo from "@/components/ShowcaseVideo";
 import ScrollReveal from "@/components/ScrollReveal";
 import RegistrationForm from "@/components/RegistrationForm";
@@ -180,8 +179,15 @@ export default function Home() {
             <p className="mx-auto mt-3 max-w-xl text-center text-slate">
               A short introduction to the strategies we&apos;ll cover at the seminar.
             </p>
-            <div className="mt-8">
-              <LiteYouTube id={VIDEO.id} title={VIDEO.title} />
+            <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-xl bg-navy shadow-lg ring-1 ring-navy/10">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube.com/embed/${VIDEO.id}?rel=0`}
+                title={VIDEO.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           </div>
         </section>
@@ -524,12 +530,13 @@ export default function Home() {
           <div className="md:justify-self-end">
             <h3 className="text-base font-semibold !text-white">Scan to reserve</h3>
             <div className="mt-4 flex flex-col items-start gap-3">
-              {/* QR placeholder — generate once final URL is confirmed (PRD §10) */}
-              <div className="flex h-28 w-28 items-center justify-center rounded-lg bg-white/10 text-center text-[10px] text-white/50 ring-1 ring-white/20">
-                QR code
-                <br />
-                placeholder
-              </div>
+              <Image
+                src="/images/qr.jpeg"
+                alt="Scan this QR code to reserve your seat"
+                width={128}
+                height={128}
+                className="h-32 w-32 rounded-lg bg-white p-1.5 shadow-sm"
+              />
               <a href="#register" className="text-sm font-semibold text-green hover:underline">
                 Or register online →
               </a>
