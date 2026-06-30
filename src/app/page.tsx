@@ -22,7 +22,6 @@ import {
   DISCLOSURE,
   PARTNERS,
   LOGO_SRC,
-  SITE_URL,
 } from "@/lib/seminar";
 
 export default function Home() {
@@ -465,13 +464,13 @@ export default function Home() {
       <footer className="bg-navy-900 text-white/80">
         <div className="mx-auto grid max-w-content gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
           <div>
-            <div className="inline-flex rounded-lg bg-white p-3">
+            <div className="inline-flex rounded-lg bg-white p-4 shadow-sm">
               <Image
                 src={LOGO_SRC}
                 alt={`${BRAND.name} Financial Services`}
-                width={180}
-                height={144}
-                className="h-16 w-auto"
+                width={471}
+                height={229}
+                className="h-14 w-auto"
               />
             </div>
             <p className="mt-4 text-sm uppercase tracking-wider text-green">
@@ -525,27 +524,42 @@ export default function Home() {
                 {BRAND.office.line2}
               </address>
             </a>
+            <a
+              href={BRAND.office.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-3 block w-full max-w-xs overflow-hidden rounded-lg ring-1 ring-white/15"
+              aria-label="View our office on the map"
+            >
+              <Image
+                src="/images/office.jpeg"
+                alt={`${BRAND.name} office building`}
+                width={711}
+                height={533}
+                className="h-auto w-full object-cover transition duration-300 group-hover:scale-105"
+              />
+            </a>
           </div>
 
           <div className="md:justify-self-end">
-            <h3 className="text-base font-semibold !text-white">Scan to reserve</h3>
+            <h3 className="text-base font-semibold !text-white">Scan Portfolio</h3>
             <div className="mt-4 flex flex-col items-start gap-3">
               <Image
                 src="/images/qr.jpeg"
-                alt="Scan this QR code to reserve your seat"
+                alt={`Scan to view the ${BRAND.name} business card and portfolio`}
                 width={128}
                 height={128}
                 className="h-32 w-32 rounded-lg bg-white p-1.5 shadow-sm"
               />
-              <a href="#register" className="text-sm font-semibold text-green hover:underline">
-                Or register online →
-              </a>
+              <p className="text-xs text-white/60">
+                Scan to view our digital business card &amp; portfolio
+              </p>
             </div>
           </div>
         </div>
         <div className="border-t border-white/10">
           <div className="mx-auto max-w-content px-4 py-5 text-center text-xs text-white/50 sm:px-6">
-            © 2026 {BRAND.name}. For educational purposes only. {SITE_URL}
+            © 2026 {BRAND.name}. For educational purposes only.
           </div>
         </div>
       </footer>

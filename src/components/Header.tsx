@@ -11,8 +11,8 @@ export default function Header() {
           <Image
             src={LOGO_SRC}
             alt={`${BRAND.name} Financial Services`}
-            width={196}
-            height={157}
+            width={471}
+            height={229}
             priority
             className="h-12 w-auto sm:h-14"
           />

@@ -162,7 +162,8 @@ export const PARTNERS: Partner[] = [
   { name: "The Alliance", src: "/images/partner-alliance.jpg" },
   { name: "Dadkhah Law Group", src: "/images/partner-dadkhah-law.jpg" },
   { name: "Integrated Trust Systems", src: "/images/partner-integrated-trust.jpg" },
+  { name: "Walker Financial", src: "/images/partner-walker-financial.jpeg" },
 ];
 
-export const LOGO_SRC = "/images/logo.jpg";
+export const LOGO_SRC = "/images/logo.png";
 export const SPEAKER_PHOTO = "/images/speaker.png";
