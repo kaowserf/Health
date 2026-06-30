@@ -188,7 +188,7 @@ export default function Home() {
                 allowFullScreen
               />
             </div>
-            <p className="mx-auto mt-5 max-w-xl text-center text-charcoal/80">
+            <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-bold text-navy sm:text-xl">
               An Estate Planning overview from our President, Chief Counsel of ITS.
             </p>
           </div>
