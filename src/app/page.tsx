@@ -264,6 +264,34 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ------------------------------------------------- ITS Presentation */}
+        <section id="its-presentation" className="bg-white">
+          <div className="reveal mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20">
+            <p className="text-sm font-semibold uppercase tracking-wider text-green-700">
+              A Personal Invitation
+            </p>
+            <h2 className="mt-2 text-3xl sm:text-4xl">Watch the ITS Presentation</h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/85">
+              Hello! I had this ITS (Integrated Trust System) presentation created
+              for you. When you have a chance, please watch it and let me know what
+              you think afterward.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <a
+                href="https://umustsee.net/YGW0HE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-green px-7 py-3.5 text-base font-semibold text-white shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-green/40"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Watch the Presentation
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* --------------------------------------------------------- Why Attend */}
         <section className="bg-navy text-white">
           <div className="reveal mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20">
