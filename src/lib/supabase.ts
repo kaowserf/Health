@@ -4,8 +4,10 @@ import "server-only";
 // with the SERVICE ROLE key so this only ever runs server-side — never import
 // this from a Client Component. Using REST means no extra npm dependency.
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+// Trim to survive a stray space/newline pasted into the env var (a common
+// hosting-dashboard gotcha that otherwise yields "Invalid API key").
+const SUPABASE_URL = process.env.SUPABASE_URL?.trim();
+const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 const TABLE = "registrations";
 
 export function isSupabaseConfigured(): boolean {
