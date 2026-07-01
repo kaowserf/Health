@@ -29,11 +29,13 @@ function safeEqual(a: string, b: string): boolean {
   return timingSafeEqual(ab, bb);
 }
 
-/** Verify a submitted password against ADMIN_PASSWORD (constant-time). */
+/** Verify a submitted password against ADMIN_PASSWORD (constant-time).
+ *  Both sides are trimmed so a stray trailing space/newline that sneaks into
+ *  the env var when pasting (a very common Vercel gotcha) doesn't lock you out. */
 export function checkPassword(submitted: string): boolean {
   const expected = process.env.ADMIN_PASSWORD;
   if (!expected) throw new Error("ADMIN_PASSWORD is not set.");
-  return safeEqual(submitted, expected);
+  return safeEqual(submitted.trim(), expected.trim());
 }
 
 /** Build a tamper-proof session token: "<expiry>.<hmac>". */
