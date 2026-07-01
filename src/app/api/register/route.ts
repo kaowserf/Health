@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { registrationSchema, normalizePhone } from "@/lib/schema";
 import { SESSIONS } from "@/lib/seminar";
+import { insertRegistration, isSupabaseConfigured } from "@/lib/supabase";
 
 // Naive in-memory rate limit (per warm serverless instance). For production,
 // back this with Upstash/Redis or rely on the CRM's own throttling.
@@ -102,24 +103,26 @@ type Registration = {
 // ---------------------------------------------------------------------------
 
 async function persistRegistration(reg: Registration): Promise<void> {
-  // PREFERRED: POST the lead into GoHighLevel / LeadConnector via an inbound
-  // webhook so registrations flow into existing pipelines.
-  //
-  //   const url = process.env.GHL_WEBHOOK_URL;
-  //   if (url) {
-  //     const res = await fetch(url, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(reg),
-  //     });
-  //     if (!res.ok) throw new Error(`CRM webhook failed: ${res.status}`);
-  //     return;
-  //   }
-  //
-  // Fallbacks: Google Sheet API / Airtable / Supabase as a backup record.
+  // Store every registration in Supabase so it shows up in the /admin panel.
+  if (isSupabaseConfigured()) {
+    await insertRegistration({
+      full_name: reg.fullName,
+      phone: reg.phone,
+      email: reg.email,
+      guests: reg.guests,
+      session_id: reg.sessionId,
+      session_label: reg.sessionLabel,
+      interests: reg.interests,
+      comments: reg.comments,
+      consent: reg.consent,
+    });
+    return;
+  }
 
-  // Until configured, log so registrations aren't silently lost in dev.
-  console.info("[register] new registration", reg);
+  // Not configured yet (e.g. local dev without keys) — log so registrations
+  // aren't silently lost. Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY to
+  // enable persistence (see .env.example).
+  console.warn("[register] Supabase not configured; registration not stored", reg);
 }
 
 async function sendConfirmationEmail(reg: Registration): Promise<void> {

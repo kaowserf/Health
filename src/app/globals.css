@@ -99,14 +99,46 @@ div[id="register"] {
   animation: fade-in 0.5s ease both;
 }
 
+/* Admin dashboard — bar fill grows from the left on mount */
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.animate-grow-x {
+  transform-origin: left;
+  animation: grow-x 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Admin dashboard — card pop-in (used with staggered animationDelay) */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.45s ease both;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .animate-fade-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .animate-grow-x,
+  .animate-pop-in {
     animation: none;
+    transform: none;
   }
   .reveal-ready .reveal {
     opacity: 1;
